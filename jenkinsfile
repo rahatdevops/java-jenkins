@@ -4,7 +4,7 @@ pipeline {
     stages {
       stage('Scm Checkout') {
         steps {
-          git branch: 'staging', url: 'https://github.com/mdrajibkhan/docker-java-jenkinsfile-registry.git'
+          git branch: 'main', url: 'https://github.com/rahatdevops/java-jenkins.git'
             }
             }
       stage('Build App') {
@@ -14,22 +14,22 @@ pipeline {
             }
       stage('Build Docker Images') {
         steps {
-          sh 'docker build -t mdrajibkhan/myimage:v1 . '
+          sh 'docker build -t rahat6/nginximage:v1 . '
             }
             }
       stage('Push the Docker Images') {
          steps {
-	   withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
-	      sh "docker login -u mdrajibkhan -p ${dockerHubPwd}"
+	   withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
+	      sh "docker login -u rahatdevops -p ${dockerHub}"
 		}
-              sh 'docker push mdrajibkhan/myimage:v1'
+              sh 'docker push rahat6/nginximage:v1'
             }
             }
       stage('Image Pull and deploy the application') {
          steps {
 	   sh 'docker rm web -f'
-	   sh 'docker pull mdrajibkhan/myimage:v1'
-	   sh 'docker run --name web -dit -p 8081:8080 mdrajibkhan/myimage:v1'
+	   sh 'docker pull rahat6/nginximage:v1'
+	   sh 'docker run --name web -dit -p 8081:8080 rahat6/nginximage:v1'
 				
             }
         }
