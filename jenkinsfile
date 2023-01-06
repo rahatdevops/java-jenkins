@@ -14,7 +14,7 @@ pipeline {
             }
       stage('Build Docker Images') {
         steps {
-          sh 'docker build -t rahat6/nginximage:v1 . '
+          sh 'docker build -t rahat6/nginx1:v1 . '
             }
             }
       stage('Push the Docker Images') {
