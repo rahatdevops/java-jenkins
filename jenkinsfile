@@ -20,7 +20,7 @@ pipeline {
       stage('Push the Docker Images') {
          steps {
 	   withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
-	      sh "docker login -u rahatdevops -p ${dockerHub}"
+	      sh "docker login -u rahat6 -p ${dockerHub}"
 		}
               sh 'docker push rahat6/nginximage:v1'
             }
