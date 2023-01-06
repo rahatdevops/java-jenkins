@@ -22,14 +22,14 @@ pipeline {
 	   withCredentials([string(credentialsId: 'dockerHub', variable: 'dockerHub')]) {
 	      sh "docker login -u rahat6 -p ${dockerHub}"
 		}
-              sh 'docker push rahat6/nginximage:v1'
+              sh 'docker push rahat6/nginx1:v1'
             }
             }
       stage('Image Pull and deploy the application') {
          steps {
 	   sh 'docker rm web -f'
-	   sh 'docker pull rahat6/nginximage:v1'
-	   sh 'docker run --name web -dit -p 8081:8080 rahat6/nginximage:v1'
+	   sh 'docker pull rahat6/nginx1:v1'
+	   sh 'docker run --name web -dit -p 8081:8080 rahat6/nginx1:v1'
 				
             }
         }
