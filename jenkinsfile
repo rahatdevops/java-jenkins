@@ -4,7 +4,7 @@ pipeline {
     stages {
       stage('Scm Checkout') {
         steps {
-          git branch: 'main', url: 'https://github.com/rahatdevops/java-jenkins.git'
+          git branch: 'staging', url: 'https://github.com/rahatdevops/java-jenkins.git'
             }
             }
       stage('Build App') {
