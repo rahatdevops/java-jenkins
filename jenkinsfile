@@ -19,7 +19,7 @@ pipeline {
             }
       stage('Push the Docker Images') {
          steps {
-	  withCredentials([string(credentialsId: 'rahathub', variable: 'rahathub')]) {
+	withCredentials([string(credentialsId: 'rahathub', variable: 'rahathub')]) {
 	      sh "docker login -u rahat6 -p ${rahatHub}"
 		}
               sh 'docker push rahat6/tomcat:v2'
