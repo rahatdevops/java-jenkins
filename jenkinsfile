@@ -19,16 +19,16 @@ pipeline {
             }
       stage('Push the Docker Images') {
          steps {
-	   withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-	      sh "docker login -u rahat6 -p ${dockerHub}"
+	   withCredentials([usernameColonPassword(credentialsId: 'rahathub', variable: 'rahathub')]) {
+	      sh "docker login -u rahat6 -p ${rahatHub}"
 		}
-              sh 'docker push rahat6/tomcat:v1'
+              sh 'docker push rahat6/tomcat:v2'
             }
             }
       stage('Image Pull and deploy the application') {
          steps {
            sh 'docker rm web -f'
-	   sh 'docker pull rahat6/tomcat:v1'
+	   sh 'docker pull rahat6/tomcat:v2'
 	   sh 'docker run --name web -dit -p 8081:8080 rahat6/tomcat:v2'
 				
             }
